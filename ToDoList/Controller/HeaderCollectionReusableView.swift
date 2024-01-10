@@ -8,7 +8,7 @@
 import UIKit
 
 class HeaderCollectionReusableView: UICollectionReusableView {
-        
+    
     @IBOutlet weak var nickName: UILabel!
     
 }
