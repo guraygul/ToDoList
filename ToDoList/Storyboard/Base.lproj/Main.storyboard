@@ -28,14 +28,14 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="toDoCell" id="QqS-uJ-cdm" customClass="ToDoCollectionViewCell" customModule="ToDoList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="300" width="127.99999999999997" height="128"/>
+                                        <rect key="frame" x="0.0" y="300" width="180" height="180"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="VdL-aX-Yy5">
-                                            <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cf2-hm-bHp">
-                                                    <rect key="frame" x="38" y="52" width="52" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to Grocery Shopping with Jessica at 3pm 🥦" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cf2-hm-bHp">
+                                                    <rect key="frame" x="10" y="10" width="160" height="160"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -43,18 +43,37 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="cf2-hm-bHp" firstAttribute="centerX" secondItem="VdL-aX-Yy5" secondAttribute="centerX" id="cKT-cc-10d"/>
-                                                <constraint firstItem="cf2-hm-bHp" firstAttribute="centerY" secondItem="VdL-aX-Yy5" secondAttribute="centerY" id="xI1-xR-iF1"/>
+                                                <constraint firstItem="cf2-hm-bHp" firstAttribute="leading" secondItem="VdL-aX-Yy5" secondAttribute="leading" constant="10" id="9td-PE-0k9"/>
+                                                <constraint firstAttribute="trailing" secondItem="cf2-hm-bHp" secondAttribute="trailing" constant="10" id="geH-2O-2TI"/>
+                                                <constraint firstItem="cf2-hm-bHp" firstAttribute="top" secondItem="VdL-aX-Yy5" secondAttribute="top" constant="10" id="w1T-AD-yV8"/>
+                                                <constraint firstAttribute="bottom" secondItem="cf2-hm-bHp" secondAttribute="bottom" constant="10" id="zcK-cS-j1x"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="180" height="180"/>
                                         <connections>
                                             <outlet property="nameLabel" destination="cf2-hm-bHp" id="cZK-Fq-gfM"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3nu-yk-luq">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="headerView" id="3nu-yk-luq" customClass="HeaderCollectionReusableView" customModule="ToDoList" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="300"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhX-Rd-ZQr">
+                                            <rect key="frame" x="128.33333333333337" y="129.66666666666666" width="136.66666666666663" height="40.666666666666657"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                            <color key="textColor" systemColor="systemIndigoColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="labelColor"/>
+                                    <constraints>
+                                        <constraint firstItem="xhX-Rd-ZQr" firstAttribute="centerY" secondItem="3nu-yk-luq" secondAttribute="centerY" id="p0C-uH-5rO"/>
+                                        <constraint firstItem="xhX-Rd-ZQr" firstAttribute="centerX" secondItem="3nu-yk-luq" secondAttribute="centerX" id="vOY-8N-giN"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="nickName" destination="xhX-Rd-ZQr" id="idY-MC-qeD"/>
+                                    </connections>
                                 </collectionReusableView>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AEa-w7-heh">
@@ -88,9 +107,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="plus.circle.fill" catalog="system" width="32" height="32"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

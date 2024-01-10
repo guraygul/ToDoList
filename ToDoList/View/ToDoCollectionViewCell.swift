@@ -8,5 +8,9 @@
 import UIKit
 
 class ToDoCollectionViewCell: UICollectionViewCell {
-    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var nameLabel: UILabel! {
+        didSet {
+            nameLabel.numberOfLines = 0
+        }
+    }
 }
