@@ -61,11 +61,6 @@ class ToDoListViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    // MARK: - Favorite Function
-    
-    
-    
-    
     // MARK: - Header View's configuration
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -81,6 +76,42 @@ class ToDoListViewController: UIViewController {
         return CGSize(width: collectionView.frame.width, height: 400)
     }
 
+    // MARK: Edit Action
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // Which task to edit
+        let taskToEdit = self.tasks[indexPath.row]
+        
+        // Create Alert
+        let alert = UIAlertController(title: "Edit Task", message: "Edit Task", preferredStyle: .alert)
+        alert.addTextField()
+        
+        let textField = alert.textFields?.first
+        textField?.text = taskToEdit.name
+        
+        let saveButton = UIAlertAction(title: "Save", style: .default) { (action) in
+            
+            // Get the textfield for the alert
+            let textField = alert.textFields?.first
+            
+            // Edit task property of tasks object
+            taskToEdit.name = textField?.text
+            
+            self.saveData()
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
+            // Do nothing
+        }
+        
+        alert.addAction(saveButton)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    
     // MARK: - Fetching Data
     func fetchData() {
         // Fetch the data from CoreData to display in the tableview
@@ -109,10 +140,6 @@ class ToDoListViewController: UIViewController {
         }
         self.fetchData()
     }
-    
-    
-    
-    
     
 }
 

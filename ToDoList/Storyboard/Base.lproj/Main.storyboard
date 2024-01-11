@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7kb-AT-1x4">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Jez-FZ-HuV">
                                     <size key="itemSize" width="128" height="128"/>
@@ -46,21 +46,22 @@
                                                     </buttonConfiguration>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to Grocery Shopping with Jessica at 3pm 🥦" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cf2-hm-bHp">
-                                                    <rect key="frame" x="10" y="50" width="180" height="140"/>
+                                                    <rect key="frame" x="10" y="50" width="180" height="100"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                             <constraints>
                                                 <constraint firstItem="zbh-fM-APd" firstAttribute="top" secondItem="VdL-aX-Yy5" secondAttribute="top" id="187-XE-cBK"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cf2-hm-bHp" secondAttribute="bottom" constant="10" id="Afu-T6-CQ5"/>
                                                 <constraint firstAttribute="trailing" secondItem="cf2-hm-bHp" secondAttribute="trailing" constant="10" id="Cjd-TA-GKO"/>
                                                 <constraint firstItem="cf2-hm-bHp" firstAttribute="leading" secondItem="VdL-aX-Yy5" secondAttribute="leading" constant="10" id="Pp9-3e-npT"/>
                                                 <constraint firstItem="cf2-hm-bHp" firstAttribute="top" secondItem="VdL-aX-Yy5" secondAttribute="top" constant="50" id="ZvT-G9-EW0"/>
                                                 <constraint firstAttribute="trailing" secondItem="zbh-fM-APd" secondAttribute="trailing" id="dF7-ro-IqF"/>
                                                 <constraint firstItem="cf2-hm-bHp" firstAttribute="top" secondItem="zbh-fM-APd" secondAttribute="bottom" id="etE-Ye-TeD"/>
-                                                <constraint firstAttribute="bottom" secondItem="cf2-hm-bHp" secondAttribute="bottom" constant="10" id="q9a-m1-7iC"/>
+                                                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="cf2-hm-bHp" secondAttribute="bottom" constant="50" id="q9a-m1-7iC"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="200" height="200"/>
@@ -91,9 +92,16 @@
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AEa-w7-heh">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIj-2r-kSS">
+                                <rect key="frame" x="310" y="761" width="35" height="42"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="p9Z-aA-bZ6"/>
+                                    <constraint firstAttribute="width" constant="35" id="sFn-j4-Pku"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AEa-w7-heh">
                                 <rect key="frame" x="278" y="743" width="99" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="plus.circle.fill" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="50"/>
@@ -106,9 +114,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7kb-AT-1x4" secondAttribute="bottom" id="dLU-CK-ppU"/>
+                            <constraint firstItem="AEa-w7-heh" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="1Ku-65-yvy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AEa-w7-heh" secondAttribute="trailing" constant="16" id="PMm-xd-agm"/>
+                            <constraint firstItem="AEa-w7-heh" firstAttribute="top" secondItem="LIj-2r-kSS" secondAttribute="bottom" constant="-60" id="Tj1-Ja-9lB"/>
+                            <constraint firstAttribute="bottom" secondItem="7kb-AT-1x4" secondAttribute="bottom" id="dLU-CK-ppU"/>
                             <constraint firstItem="7kb-AT-1x4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="f7p-LV-IvB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7kb-AT-1x4" secondAttribute="trailing" id="mor-GF-eo0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LIj-2r-kSS" secondAttribute="trailing" constant="48" id="x78-AR-MzA"/>
                             <constraint firstItem="7kb-AT-1x4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yLX-bM-JNc"/>
                         </constraints>
                     </view>
