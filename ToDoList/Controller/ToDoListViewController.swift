@@ -8,7 +8,7 @@
 import UIKit
 
 class ToDoListViewController: UIViewController {
-
+    
     @IBOutlet var collectionView: UICollectionView!
     
     private var tasks = [ToDoList]()
@@ -22,15 +22,18 @@ class ToDoListViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.dragDelegate = self
+        collectionView.dropDelegate = self
         
         collectionView.collectionViewLayout = UICollectionViewFlowLayout()
+        
+        collectionView.dragInteractionEnabled = true
+        
         
         // Get items from CoreData
         fetchData()
     }
-
-
-
+    
     // MARK: - Add Button
     
     @IBAction func didAddBarTapped() {
@@ -65,17 +68,17 @@ class ToDoListViewController: UIViewController {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath) as! HeaderCollectionReusableView
-            
-            headerView.nickName.text = "Welcome Güray"
-            return headerView
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath) as! HeaderCollectionReusableView
+        
+        headerView.nickName.text = "Welcome Güray"
+        return headerView
     }
-  
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
         return CGSize(width: collectionView.frame.width, height: 400)
     }
-
+    
     // MARK: Edit Action
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -145,7 +148,7 @@ class ToDoListViewController: UIViewController {
 
 // MARK: - Configuring collection view cells data
 
-extension ToDoListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension ToDoListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         tasks.count
@@ -160,6 +163,76 @@ extension ToDoListViewController: UICollectionViewDataSource, UICollectionViewDe
         cell.updateCheckmark()
         
         return cell
+    }
+    
+}
+
+// MARK: - Updating Order
+
+extension ToDoListViewController: UICollectionViewDelegate {
+    
+    func reorderItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView) {
+        
+        if let item = coordinator.items.first,
+           let sourceIndexPath = item.sourceIndexPath {
+            
+            collectionView.performBatchUpdates({
+                self.tasks.remove(at: sourceIndexPath.item)
+                self.tasks.insert(item.dragItem.localObject as! ToDoList, at: destinationIndexPath.item)
+                
+                collectionView.deleteItems(at: [sourceIndexPath])
+                collectionView.insertItems(at: [destinationIndexPath])
+                updateOrderValues()
+            }, completion: nil)
+            coordinator.drop(item.dragItem, toItemAt: destinationIndexPath)
+        }
+    }
+    
+    // Updating the orders acording to new order
+    func updateOrderValues() {
+        for (index, task) in tasks.enumerated() {
+            task.id = Int64(index)
+        }
+    }
+    
+}
+
+// MARK: - Drag&Drop Feature
+
+extension ToDoListViewController: UICollectionViewDragDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let task = tasks[indexPath.item]
+        let itemProvider = NSItemProvider(object: task.name! as NSString)
+        let dragItem = UIDragItem(itemProvider: itemProvider)
+        dragItem.localObject = task
+        return [dragItem]
+    }
+}
+
+extension ToDoListViewController: UICollectionViewDropDelegate {
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
+        
+        if collectionView.hasActiveDrag {
+            return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+        }
+        return UICollectionViewDropProposal(operation: .forbidden)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+        
+        var destinationIndexPath: IndexPath
+        if let indexPath = coordinator.destinationIndexPath {
+            destinationIndexPath = indexPath
+        } else {
+            let row = collectionView.numberOfItems(inSection: 0)
+            destinationIndexPath = IndexPath(item: row - 1, section: 0)
+        }
+        
+        if coordinator.proposal.operation == .move {
+            self.reorderItems(coordinator: coordinator, destinationIndexPath: destinationIndexPath, collectionView: collectionView)
+        }
+        
     }
     
 }
