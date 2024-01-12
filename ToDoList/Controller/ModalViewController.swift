@@ -12,7 +12,6 @@ class ModalViewController: UIViewController {
     var task = ToDoList()
     
     @IBOutlet weak var addTasks: UIView!
-    @IBOutlet weak var submitButton: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
