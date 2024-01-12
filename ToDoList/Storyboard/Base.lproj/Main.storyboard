@@ -29,14 +29,14 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="toDoCell" id="QqS-uJ-cdm" customClass="ToDoCollectionViewCell" customModule="ToDoList" customModuleProvider="target">
-                                        <rect key="frame" x="96.666666666666671" y="287" width="200" height="200"/>
+                                        <rect key="frame" x="0.0" y="287" width="175" height="175"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="VdL-aX-Yy5">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbh-fM-APd">
-                                                    <rect key="frame" x="149.66666666666666" y="0.0" width="50.333333333333343" height="50"/>
+                                                    <rect key="frame" x="124.66666666666667" y="0.0" width="50.333333333333329" height="50"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="Button"/>
@@ -46,7 +46,7 @@
                                                     </buttonConfiguration>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to Grocery Shopping with Jessica at 3pm 🥦" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cf2-hm-bHp">
-                                                    <rect key="frame" x="10" y="50" width="180" height="100"/>
+                                                    <rect key="frame" x="10" y="50" width="155" height="75"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -64,7 +64,7 @@
                                                 <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="cf2-hm-bHp" secondAttribute="bottom" constant="50" id="q9a-m1-7iC"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="200" height="200"/>
+                                        <size key="customSize" width="175" height="175"/>
                                         <connections>
                                             <outlet property="checkmarkButton" destination="zbh-fM-APd" id="ljr-64-8aD"/>
                                             <outlet property="nameLabel" destination="cf2-hm-bHp" id="cZK-Fq-gfM"/>
@@ -107,7 +107,8 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="50"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="didAddBarTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="WDp-2M-9ca"/>
+                                    <action selector="didAddBarTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZAI-S4-exj"/>
+                                    <segue destination="kkL-vn-AK1" kind="show" identifier="showAddToDoViewController" id="EQO-Zr-Sd5"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -132,18 +133,107 @@
             </objects>
             <point key="canvasLocation" x="64.885496183206101" y="-34.507042253521128"/>
         </scene>
+        <!--Modal View Controller-->
+        <scene sceneID="9WA-vi-2QS">
+            <objects>
+                <viewController storyboardIdentifier="ModalViewController" id="kkL-vn-AK1" customClass="ModalViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eei-cG-2ax">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKS-9F-Kvq">
+                                <rect key="frame" x="10" y="492" width="373" height="350"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruf-x9-hwD">
+                                        <rect key="frame" x="322" y="20" width="31" height="28.666666666666671"/>
+                                        <color key="tintColor" systemColor="systemRedColor"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="xmark" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="closeButtonTapped:" destination="kkL-vn-AK1" eventType="touchUpInside" id="qat-Cq-NHK"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a task..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7zi-BW-5kZ">
+                                        <rect key="frame" x="40" y="70" width="293" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOe-89-efN">
+                                        <rect key="frame" x="36.666666666666657" y="280" width="300" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="kdv-yF-moi"/>
+                                            <constraint firstAttribute="height" constant="50" id="sz2-Wf-hDQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="7zi-BW-5kZ" secondAttribute="trailing" constant="40" id="CQ2-BT-87U"/>
+                                    <constraint firstAttribute="bottom" secondItem="FOe-89-efN" secondAttribute="bottom" constant="20" id="DcC-8b-oGh"/>
+                                    <constraint firstItem="7zi-BW-5kZ" firstAttribute="leading" secondItem="hKS-9F-Kvq" secondAttribute="leading" constant="40" id="Ee4-F8-X2H"/>
+                                    <constraint firstItem="7zi-BW-5kZ" firstAttribute="top" secondItem="hKS-9F-Kvq" secondAttribute="top" constant="70" id="G6M-wT-Nti"/>
+                                    <constraint firstAttribute="height" constant="350" id="Wum-9O-zUe"/>
+                                    <constraint firstItem="FOe-89-efN" firstAttribute="centerX" secondItem="hKS-9F-Kvq" secondAttribute="centerX" id="sLz-Jh-vTN"/>
+                                    <constraint firstAttribute="trailing" secondItem="ruf-x9-hwD" secondAttribute="trailing" constant="20" id="vbR-Kx-jum"/>
+                                    <constraint firstItem="ruf-x9-hwD" firstAttribute="top" secondItem="hKS-9F-Kvq" secondAttribute="top" constant="20" id="zt9-dN-OnC"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="B62-Qz-y5d"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="B62-Qz-y5d" firstAttribute="bottom" secondItem="hKS-9F-Kvq" secondAttribute="bottom" id="dKC-Av-cTj"/>
+                            <constraint firstItem="B62-Qz-y5d" firstAttribute="trailing" secondItem="hKS-9F-Kvq" secondAttribute="trailing" constant="10" id="oL5-hO-p8N"/>
+                            <constraint firstItem="hKS-9F-Kvq" firstAttribute="leading" secondItem="B62-Qz-y5d" secondAttribute="leading" constant="10" id="vjO-Iv-G74"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="7jT-CC-USc"/>
+                    <connections>
+                        <outlet property="addTasks" destination="hKS-9F-Kvq" id="8ez-bO-Qvl"/>
+                        <outlet property="submitButton" destination="hKS-9F-Kvq" id="gNI-ej-9St"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f9u-tT-3lt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="857" y="-35"/>
+        </scene>
     </scenes>
     <resources>
         <image name="checkmark.circle" catalog="system" width="128" height="123"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

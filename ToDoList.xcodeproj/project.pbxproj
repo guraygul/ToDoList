@@ -17,6 +17,7 @@
 		106696032B4DBF8D005ED5DF /* ToDoList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106696012B4DBF8D005ED5DF /* ToDoList+CoreDataClass.swift */; };
 		106696042B4DBF8D005ED5DF /* ToDoList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106696022B4DBF8D005ED5DF /* ToDoList+CoreDataProperties.swift */; };
 		106696062B4DC013005ED5DF /* ToDoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106696052B4DC013005ED5DF /* ToDoCollectionViewCell.swift */; };
+		1088FA372B51935F00A2F62F /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1088FA362B51935F00A2F62F /* ModalViewController.swift */; };
 		10F3905A2B4F283D004C9C32 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F390592B4F283D004C9C32 /* HeaderCollectionReusableView.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		106696012B4DBF8D005ED5DF /* ToDoList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoList+CoreDataClass.swift"; sourceTree = "<group>"; };
 		106696022B4DBF8D005ED5DF /* ToDoList+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoList+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		106696052B4DC013005ED5DF /* ToDoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCollectionViewCell.swift; sourceTree = "<group>"; };
+		1088FA362B51935F00A2F62F /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		10F390592B4F283D004C9C32 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +103,7 @@
 			children = (
 				106695EA2B4DBE38005ED5DF /* ToDoListViewController.swift */,
 				10F390592B4F283D004C9C32 /* HeaderCollectionReusableView.swift */,
+				1088FA362B51935F00A2F62F /* ModalViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				106696062B4DC013005ED5DF /* ToDoCollectionViewCell.swift in Sources */,
 				106695E92B4DBE38005ED5DF /* SceneDelegate.swift in Sources */,
 				106695F12B4DBE38005ED5DF /* ToDoList.xcdatamodeld in Sources */,
+				1088FA372B51935F00A2F62F /* ModalViewController.swift in Sources */,
 				106696042B4DBF8D005ED5DF /* ToDoList+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

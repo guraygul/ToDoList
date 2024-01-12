@@ -36,32 +36,38 @@ class ToDoListViewController: UIViewController {
     
     // MARK: - Add Button
     
-    @IBAction func didAddBarTapped() {
-        let alert = UIAlertController(title: "Add Task", message: nil, preferredStyle: .alert)
-        alert.addTextField()
-        
-        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-            
-            if let textField = alert.textFields?.first, let newTask = textField.text, !newTask.isEmpty {
-                
-                let newItem = ToDoList(context: self.context)
-                newItem.name = newTask
-                newItem.id = Int64(self.tasks.count) // Adding new items to the bottom of the list
-                newItem.isDone = false
-                
-                self.tasks.append(newItem)
-                
-                self.saveData()
-            }
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
-            // Do nothing
-        }
-        
-        alert.addAction(ok)
-        alert.addAction(cancel)
-        self.present(alert, animated: true, completion: nil)
+//    @IBAction func didAddBarTapped() {
+//        let alert = UIAlertController(title: "Add Task", message: nil, preferredStyle: .alert)
+//        alert.addTextField()
+//        
+//        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+//            
+//            if let textField = alert.textFields?.first, let newTask = textField.text, !newTask.isEmpty {
+//                
+//                let newItem = ToDoList(context: self.context)
+//                newItem.name = newTask
+//                newItem.id = Int64(self.tasks.count) // Adding new items to the bottom of the list
+//                newItem.isDone = false
+//                
+//                self.tasks.append(newItem)
+//                
+//                self.saveData()
+//            }
+//        }
+//        
+//        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
+//            // Do nothing
+//        }
+//        
+//        alert.addAction(ok)
+//        alert.addAction(cancel)
+//        self.present(alert, animated: true, completion: nil)
+//    }
+    
+    @IBAction func didAddBarTapped(_ sender: Any) {
+    
+        performSegue(withIdentifier: "showAddToDoViewController", sender: self)
+
     }
     
     // MARK: - Header View's configuration
