@@ -17,6 +17,9 @@ class ToDoListViewController: UIViewController {
     
     private let sectionInsets = UIEdgeInsets(top: 20.0, left: 10.0, bottom: 20.0, right: 10.0)
     
+    let toDoListManager = ToDoManager()
+    let toDoListViewModel = TodoViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +31,8 @@ class ToDoListViewController: UIViewController {
         collectionView.collectionViewLayout = UICollectionViewFlowLayout()
         
         collectionView.dragInteractionEnabled = true
+        
+        toDoListViewModel.loadTasks()
         
         
         // Get items from CoreData
@@ -106,7 +111,7 @@ class ToDoListViewController: UIViewController {
             // Edit task property of tasks object
             taskToEdit.name = textField?.text
             
-            self.saveData()
+            self.toDoListManager.saveTask()
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
@@ -136,18 +141,6 @@ class ToDoListViewController: UIViewController {
         catch {
             // error handling
         }
-    }
-    
-    // MARK: - Saving Data
-    
-    func saveData() {
-        do {
-            try self.context.save()
-        }
-        catch {
-            // Error handling
-        }
-        self.fetchData()
     }
     
 }
