@@ -9,7 +9,7 @@ import UIKit
 
 class ModalViewController: UIViewController {
     
-    var task = ToDoList()
+    var task: ToDoList?
     var tasks = [ToDoList]()
     @IBOutlet weak var addTasks: UIView!
     
@@ -17,9 +17,12 @@ class ModalViewController: UIViewController {
     
     @IBOutlet weak var inputTask: UITextField!
     
+    @IBOutlet weak var submitButton: UIButton!
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     let toDoListManager = ToDoManager()
+    var toDoListViewModel = TodoViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +30,33 @@ class ModalViewController: UIViewController {
         // Notifies the view if keyboard is open or close
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
+        updateUI()
+        
+        
+    }
+    
+    func updateUI(){
+        
+        if toDoListManager.isEditingModeActive {
+            submitButton.setTitle("EDIT", for: .normal)
+            
+            print("A")
+        }
+        else {
+            submitButton.setTitle("ADD", for: .normal)
+            
+            print("B")
+        }
+
+        inputTask?.text = task?.name
+        print("C")
     }
     
 }
 
 //MARK: - ACTIONS
 
-extension ModalViewController{
+extension ModalViewController {
     
     @IBAction func closeButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -51,34 +74,16 @@ extension ModalViewController{
             return
         }
         
-//        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
-//            task = ToDoList(context: appDelegate.persistentContainer.viewContext)
-//            
-//            task.name = inputTask.text!
-//            task.id = Int64(self.tasks.count)
-//            task.isDone = false
-//            
-//            print("Saving data to context...")
-//            appDelegate.saveContext()
-//            
-//        }
-            if let textField = inputTask, let newTask = textField.text, !newTask.isEmpty {
-
-                let newItem = ToDoList(context: self.context)
-                newItem.name = newTask
-                newItem.id = Int64(self.tasks.count) // Adding new items to the bottom of the list
-                newItem.isDone = false
-
-                self.tasks.append(newItem)
-
-                toDoListManager.saveTask()
-            }
+        if toDoListManager.isEditingModeActive {
+            task?.name = inputTask.text
+            toDoListViewModel.updateTask(task ?? ToDoList())
+        } else {
+            toDoListViewModel.addTask(name: inputTask.text!, id: 1, isDone: false)
+        }
         
         if let vc = presentingViewController as? ToDoListViewController {
             vc.fetchData()
         }
-        
-        
         
         dismiss(animated: true, completion: nil)
     }

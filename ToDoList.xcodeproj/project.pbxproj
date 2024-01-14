@@ -99,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				106696052B4DC013005ED5DF /* ToDoCollectionViewCell.swift */,
+				10F390592B4F283D004C9C32 /* HeaderCollectionReusableView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -107,7 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				106695EA2B4DBE38005ED5DF /* ToDoListViewController.swift */,
-				10F390592B4F283D004C9C32 /* HeaderCollectionReusableView.swift */,
 				1088FA362B51935F00A2F62F /* ModalViewController.swift */,
 			);
 			path = Controller;

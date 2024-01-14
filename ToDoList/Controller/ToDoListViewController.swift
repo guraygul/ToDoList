@@ -34,97 +34,26 @@ class ToDoListViewController: UIViewController {
         
         toDoListViewModel.loadTasks()
         
-        
         // Get items from CoreData
         fetchData()
     }
     
     // MARK: - Add Button
     
-//    @IBAction func didAddBarTapped() {
-//        let alert = UIAlertController(title: "Add Task", message: nil, preferredStyle: .alert)
-//        alert.addTextField()
-//        
-//        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-//            
-//            if let textField = alert.textFields?.first, let newTask = textField.text, !newTask.isEmpty {
-//                
-//                let newItem = ToDoList(context: self.context)
-//                newItem.name = newTask
-//                newItem.id = Int64(self.tasks.count) // Adding new items to the bottom of the list
-//                newItem.isDone = false
-//                
-//                self.tasks.append(newItem)
-//                
-//                self.saveData()
-//            }
-//        }
-//        
-//        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
-//            // Do nothing
-//        }
-//        
-//        alert.addAction(ok)
-//        alert.addAction(cancel)
-//        self.present(alert, animated: true, completion: nil)
-//    }
-    
     @IBAction func didAddBarTapped(_ sender: Any) {
-    
+         
         performSegue(withIdentifier: "showAddToDoViewController", sender: self)
-
+        
     }
     
-    // MARK: - Header View's configuration
+    // MARK: - Edit Action
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath) as! HeaderCollectionReusableView
-        
-        headerView.nickName.text = "Welcome Güray"
-        return headerView
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
-        return CGSize(width: collectionView.frame.width, height: 400)
-    }
-    
-    // MARK: Edit Action
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        // Which task to edit
-        let taskToEdit = self.tasks[indexPath.row]
+        toDoListManager.updateMode()
+        performSegue(withIdentifier: "showEditToDoViewController", sender: self)
         
-        // Create Alert
-        let alert = UIAlertController(title: "Edit Task", message: "Edit Task", preferredStyle: .alert)
-        alert.addTextField()
-        
-        let textField = alert.textFields?.first
-        textField?.text = taskToEdit.name
-        
-        let saveButton = UIAlertAction(title: "Save", style: .default) { (action) in
-            
-            // Get the textfield for the alert
-            let textField = alert.textFields?.first
-            
-            // Edit task property of tasks object
-            taskToEdit.name = textField?.text
-            
-            self.toDoListManager.saveTask()
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
-            // Do nothing
-        }
-        
-        alert.addAction(saveButton)
-        alert.addAction(cancel)
-        self.present(alert, animated: true, completion: nil)
     }
-    
-    
-    
     
     // MARK: - Fetching Data
     func fetchData() {
@@ -259,4 +188,19 @@ extension ToDoListViewController: UICollectionViewDelegateFlowLayout {
         _ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
             return sectionInsets.left
         }
+    
+    // MARK: - Header View's configuration
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath) as! HeaderCollectionReusableView
+        
+        headerView.nickName.text = "Welcome Güray"
+        return headerView
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        return CGSize(width: collectionView.frame.width, height: 400)
+    }
 }

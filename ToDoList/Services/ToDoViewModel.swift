@@ -18,6 +18,10 @@ class TodoViewModel{
         manager.deleteTask(task)
     }
     
+    func updateTask(_ task: ToDoList){
+        manager.updateTask(task)
+    }
+    
     func loadTasks() {
         manager.retrieveTodo()
     }
