@@ -11,6 +11,8 @@ class ToDoListViewController: UIViewController {
     
     @IBOutlet var collectionView: UICollectionView!
     
+    @IBOutlet weak var addTaskButton: UIButton!
+    
     private var tasks = [ToDoList]()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -34,25 +36,34 @@ class ToDoListViewController: UIViewController {
         
         toDoListViewModel.loadTasks()
         
+        addTaskButton.addTarget(self, action: #selector(showModal), for: .touchUpInside) // Showing modal view for adding task when clicked
+        
         // Get items from CoreData
         fetchData()
-    }
-    
-    // MARK: - Add Button
-    
-    @IBAction func didAddBarTapped(_ sender: Any) {
-         
-        performSegue(withIdentifier: "showAddToDoViewController", sender: self)
-        
     }
     
     // MARK: - Edit Action
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        toDoListManager.updateMode()
-        performSegue(withIdentifier: "showEditToDoViewController", sender: self)
+        self.toDoListViewModel.isEditingModeActive = true
+        self.showModal(index: indexPath.item as NSNumber)
+    }
+    
+    // MARK: - Showing Modal for Adding/Editing Tasks
+    
+    @objc func showModal(index: NSNumber?){
         
+        let vc = self.storyboard?.instantiateViewController(identifier: "ModalViewController") as! ModalViewController
+        
+        vc.modalTransitionStyle = .crossDissolve
+        vc.toDoListViewModel = toDoListViewModel
+        
+        if toDoListViewModel.isEditingModeActive {
+            vc.task = self.tasks[index as! Int]
+        }
+        
+        present(vc, animated: true, completion: nil)
     }
     
     // MARK: - Fetching Data

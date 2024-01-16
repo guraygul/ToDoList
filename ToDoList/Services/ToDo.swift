@@ -14,8 +14,6 @@ class ToDoManager {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    public var isEditingModeActive = false
-    
     func addTask(name: String, id: Int, isDone: Bool) {
         let newTask = ToDoList(context: self.context)
         newTask.name = name
@@ -34,10 +32,6 @@ class ToDoManager {
     
     func updateTask(_ task: ToDoList) {
         saveTask()
-    }
-    
-    func updateMode() {
-        isEditingModeActive.toggle()
     }
     
     func retrieveTodo(){

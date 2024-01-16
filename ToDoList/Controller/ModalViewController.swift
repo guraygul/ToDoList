@@ -11,6 +11,7 @@ class ModalViewController: UIViewController {
     
     var task: ToDoList?
     var tasks = [ToDoList]()
+    
     @IBOutlet weak var addTasks: UIView!
     
     @IBOutlet weak var inputViewBottom: NSLayoutConstraint!
@@ -37,19 +38,15 @@ class ModalViewController: UIViewController {
     
     func updateUI(){
         
-        if toDoListManager.isEditingModeActive {
+        if toDoListViewModel.isEditingModeActive {
             submitButton.setTitle("EDIT", for: .normal)
-            
-            print("A")
         }
         else {
             submitButton.setTitle("ADD", for: .normal)
-            
-            print("B")
         }
 
         inputTask?.text = task?.name
-        print("C")
+        
     }
     
 }
@@ -59,10 +56,12 @@ class ModalViewController: UIViewController {
 extension ModalViewController {
     
     @IBAction func closeButtonTapped(_ sender: Any) {
+        toDoListViewModel.isEditingModeActive = false
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func saveButtonTapped(sender: UIButton) {
+        
         if inputTask.text == "" {
             
             let alertController = UIAlertController(title: "Oops", message: "We can't proceed because one of the fields is blank. Please note that all fields are required.", preferredStyle: .alert)
@@ -74,11 +73,11 @@ extension ModalViewController {
             return
         }
         
-        if toDoListManager.isEditingModeActive {
+        if toDoListViewModel.isEditingModeActive {
             task?.name = inputTask.text
             toDoListViewModel.updateTask(task ?? ToDoList())
         } else {
-            toDoListViewModel.addTask(name: inputTask.text!, id: 1, isDone: false)
+            toDoListViewModel.addTask(name: inputTask.text!, id: tasks.count, isDone: false)
         }
         
         if let vc = presentingViewController as? ToDoListViewController {

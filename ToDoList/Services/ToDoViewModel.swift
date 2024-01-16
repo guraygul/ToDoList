@@ -11,6 +11,10 @@ class TodoViewModel{
 
     private let manager = ToDoManager.shared
     
+    var tasks: [ToDoList]!
+    
+    var isEditingModeActive = false
+    
     func addTask(name: String, id: Int, isDone: Bool){
         manager.addTask(name: name, id: id, isDone: isDone)
     }
@@ -20,6 +24,10 @@ class TodoViewModel{
     
     func updateTask(_ task: ToDoList){
         manager.updateTask(task)
+    }
+    
+    func updateMode() {
+        isEditingModeActive = !isEditingModeActive
     }
     
     func loadTasks() {
