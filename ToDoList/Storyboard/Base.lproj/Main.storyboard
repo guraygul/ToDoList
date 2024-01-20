@@ -185,6 +185,17 @@
                                             <action selector="saveButtonTappedWithSender:" destination="kkL-vn-AK1" eventType="touchUpInside" id="Wp2-uU-VQ0"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2S-LY-g3b">
+                                        <rect key="frame" x="8.0000000000000036" y="15.999999999999996" width="52.333333333333343" height="37.666666666666657"/>
+                                        <color key="tintColor" systemColor="systemRedColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="trash.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="deleteButtonTapped:" destination="kkL-vn-AK1" eventType="touchUpInside" id="UxS-dC-qSz"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -192,7 +203,9 @@
                                     <constraint firstAttribute="bottom" secondItem="FOe-89-efN" secondAttribute="bottom" constant="20" id="DcC-8b-oGh"/>
                                     <constraint firstItem="7zi-BW-5kZ" firstAttribute="leading" secondItem="hKS-9F-Kvq" secondAttribute="leading" constant="40" id="Ee4-F8-X2H"/>
                                     <constraint firstItem="7zi-BW-5kZ" firstAttribute="top" secondItem="hKS-9F-Kvq" secondAttribute="top" constant="70" id="G6M-wT-Nti"/>
+                                    <constraint firstItem="I2S-LY-g3b" firstAttribute="top" secondItem="hKS-9F-Kvq" secondAttribute="top" constant="16" id="L10-vn-hgk"/>
                                     <constraint firstAttribute="height" constant="350" id="Wum-9O-zUe"/>
+                                    <constraint firstItem="I2S-LY-g3b" firstAttribute="leading" secondItem="hKS-9F-Kvq" secondAttribute="leading" constant="8" id="pIa-3W-6RG"/>
                                     <constraint firstItem="FOe-89-efN" firstAttribute="centerX" secondItem="hKS-9F-Kvq" secondAttribute="centerX" id="sLz-Jh-vTN"/>
                                     <constraint firstAttribute="trailing" secondItem="ruf-x9-hwD" secondAttribute="trailing" constant="20" id="vbR-Kx-jum"/>
                                     <constraint firstItem="ruf-x9-hwD" firstAttribute="top" secondItem="hKS-9F-Kvq" secondAttribute="top" constant="20" id="zt9-dN-OnC"/>
@@ -219,6 +232,7 @@
                     <navigationItem key="navigationItem" id="7jT-CC-USc"/>
                     <connections>
                         <outlet property="addTasks" destination="hKS-9F-Kvq" id="8ez-bO-Qvl"/>
+                        <outlet property="deleteButton" destination="I2S-LY-g3b" id="hqk-7O-NQN"/>
                         <outlet property="inputTask" destination="7zi-BW-5kZ" id="axp-HI-I84"/>
                         <outlet property="inputViewBottom" destination="dKC-Av-cTj" id="AVw-wm-Xne"/>
                         <outlet property="submitButton" destination="FOe-89-efN" id="14D-Mx-Ojs"/>
@@ -237,6 +251,7 @@
     <resources>
         <image name="checkmark.circle" catalog="system" width="128" height="123"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="trash.fill" catalog="system" width="117" height="128"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

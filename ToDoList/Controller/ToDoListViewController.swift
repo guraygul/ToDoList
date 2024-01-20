@@ -20,7 +20,6 @@ class ToDoListViewController: UIViewController {
     private let sectionInsets = UIEdgeInsets(top: 20.0, left: 10.0, bottom: 20.0, right: 10.0)
     
     let toDoListManager = ToDoManager()
-    let toDoListViewModel = TodoViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +33,7 @@ class ToDoListViewController: UIViewController {
         
         collectionView.dragInteractionEnabled = true
         
-        toDoListViewModel.loadTasks()
+        toDoListManager.retrieveTodo()
         
         addTaskButton.addTarget(self, action: #selector(showModal), for: .touchUpInside) // Showing modal view for adding task when clicked
         
@@ -46,7 +45,7 @@ class ToDoListViewController: UIViewController {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        self.toDoListViewModel.isEditingModeActive = true
+        self.toDoListManager.isEditingModeActive = true
         self.showModal(index: indexPath.item as NSNumber)
     }
     
@@ -57,9 +56,9 @@ class ToDoListViewController: UIViewController {
         let vc = self.storyboard?.instantiateViewController(identifier: "ModalViewController") as! ModalViewController
         
         vc.modalTransitionStyle = .crossDissolve
-        vc.toDoListViewModel = toDoListViewModel
+        vc.toDoListManager = toDoListManager
         
-        if toDoListViewModel.isEditingModeActive {
+        if toDoListManager.isEditingModeActive {
             vc.task = self.tasks[index as! Int]
         }
         

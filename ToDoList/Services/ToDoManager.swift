@@ -9,10 +9,14 @@ import UIKit
 import CoreData
 
 class ToDoManager {
-    static let shared = ToDoManager()
+    
     var tasks: [ToDoList] = []
     
+    static let shared = ToDoManager()
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    var isEditingModeActive = false
     
     func addTask(name: String, id: Int, isDone: Bool) {
         let newTask = ToDoList(context: self.context)
@@ -27,7 +31,7 @@ class ToDoManager {
     
     func deleteTask(_ task: ToDoList) {
         self.context.delete(task)
-        saveTask()
+        self.saveTask()
     }
     
     func updateTask(_ task: ToDoList) {

@@ -20,10 +20,11 @@ class ModalViewController: UIViewController {
     
     @IBOutlet weak var submitButton: UIButton!
     
+    @IBOutlet weak var deleteButton: UIButton!
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    let toDoListManager = ToDoManager()
-    var toDoListViewModel = TodoViewModel()
+    var toDoListManager = ToDoManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +39,9 @@ class ModalViewController: UIViewController {
     
     func updateUI(){
         
-        if toDoListViewModel.isEditingModeActive {
+        if toDoListManager.isEditingModeActive {
             submitButton.setTitle("EDIT", for: .normal)
+            deleteButton.isHidden = false
         }
         else {
             submitButton.setTitle("ADD", for: .normal)
@@ -56,8 +58,34 @@ class ModalViewController: UIViewController {
 extension ModalViewController {
     
     @IBAction func closeButtonTapped(_ sender: Any) {
-        toDoListViewModel.isEditingModeActive = false
+        
+        toDoListManager.isEditingModeActive = false
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        
+        toDoListManager.isEditingModeActive = false
+        
+        let alertController = UIAlertController(title: "Are you sure?", message: "Task will be deleted", preferredStyle: .alert)
+        
+        let delete = UIAlertAction(title: "Delete", style: .destructive) { [self] _ in
+            self.toDoListManager.deleteTask(task ?? ToDoList())
+            
+            if let vc = presentingViewController as? ToDoListViewController {
+                vc.fetchData()
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addAction(delete)
+        alertController.addAction(cancel)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
     }
     
     @IBAction func saveButtonTapped(sender: UIButton) {
@@ -73,17 +101,18 @@ extension ModalViewController {
             return
         }
         
-        if toDoListViewModel.isEditingModeActive {
+        if toDoListManager.isEditingModeActive {
             task?.name = inputTask.text
-            toDoListViewModel.updateTask(task ?? ToDoList())
+            toDoListManager.updateTask(task ?? ToDoList())
         } else {
-            toDoListViewModel.addTask(name: inputTask.text!, id: tasks.count, isDone: false)
+            toDoListManager.addTask(name: inputTask.text!, id: tasks.count, isDone: false)
         }
         
         if let vc = presentingViewController as? ToDoListViewController {
             vc.fetchData()
         }
         
+        toDoListManager.isEditingModeActive = false
         dismiss(animated: true, completion: nil)
     }
     
