@@ -10,5 +10,5 @@ import UIKit
 class HeaderCollectionReusableView: UICollectionReusableView {
     
     @IBOutlet weak var nickName: UILabel!
-    
+    @IBOutlet weak var progressView: ProgressView!
 }

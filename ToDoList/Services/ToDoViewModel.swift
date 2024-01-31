@@ -13,8 +13,6 @@ class TodoViewModel{
     
     var tasks: [ToDoList]!
     
-    
-    
     func addTask(name: String, id: Int, isDone: Bool){
         manager.addTask(name: name, id: id, isDone: isDone)
     }

@@ -13,13 +13,9 @@ class ModalViewController: UIViewController {
     var tasks = [ToDoList]()
     
     @IBOutlet weak var addTasks: UIView!
-    
     @IBOutlet weak var inputViewBottom: NSLayoutConstraint!
-    
     @IBOutlet weak var inputTask: UITextField!
-    
     @IBOutlet weak var submitButton: UIButton!
-    
     @IBOutlet weak var deleteButton: UIButton!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -33,8 +29,6 @@ class ModalViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
         updateUI()
-        
-        
     }
     
     func updateUI(){
@@ -48,7 +42,6 @@ class ModalViewController: UIViewController {
         }
 
         inputTask?.text = task?.name
-        
     }
     
 }

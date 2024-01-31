@@ -10,18 +10,27 @@ import CoreData
 
 class ToDoManager {
     
+    var isEditingModeActive = false
     var tasks: [ToDoList] = []
     
     static let shared = ToDoManager()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    var isEditingModeActive = false
+    func calculatePercentage() -> Int {
+        let completed = tasks.filter { $0.isDone == true }
+        if completed.count > 0 {
+            return completed.count * 100 / tasks.count
+        } else {
+            return 0
+        }
+        
+    }
     
     func addTask(name: String, id: Int, isDone: Bool) {
         let newTask = ToDoList(context: self.context)
         newTask.name = name
-        newTask.id = Int64(self.tasks.count)  //Int64(self.tasks.count)
+        newTask.id = Int64(self.tasks.count)
         newTask.isDone = isDone
         
         self.tasks.append(newTask)

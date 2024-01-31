@@ -88,14 +88,24 @@
                                             <color key="textColor" systemColor="systemIndigoColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="FZV-9t-cir" customClass="ProgressView" customModule="ToDoList" customModuleProvider="target">
+                                            <rect key="frame" x="28" y="28" width="337" height="5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="5" id="VSV-Tz-c3F"/>
+                                            </constraints>
+                                        </progressView>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemGray5Color"/>
                                     <constraints>
+                                        <constraint firstItem="FZV-9t-cir" firstAttribute="top" secondItem="3nu-yk-luq" secondAttribute="topMargin" constant="20" id="0qy-Gn-8HN"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="FZV-9t-cir" secondAttribute="trailing" constant="20" id="2oh-iW-4CZ"/>
+                                        <constraint firstItem="FZV-9t-cir" firstAttribute="leading" secondItem="3nu-yk-luq" secondAttribute="leadingMargin" constant="20" id="SFY-Rw-2fN"/>
                                         <constraint firstItem="xhX-Rd-ZQr" firstAttribute="centerY" secondItem="3nu-yk-luq" secondAttribute="centerY" id="p0C-uH-5rO"/>
                                         <constraint firstItem="xhX-Rd-ZQr" firstAttribute="centerX" secondItem="3nu-yk-luq" secondAttribute="centerX" id="vOY-8N-giN"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="nickName" destination="xhX-Rd-ZQr" id="idY-MC-qeD"/>
+                                        <outlet property="progressView" destination="FZV-9t-cir" id="ISh-CA-dGh"/>
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>
@@ -246,7 +256,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1782.4427480916029" y="-35.211267605633807"/>
+            <point key="canvasLocation" x="1879" y="-35"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gPq-aH-F4f">

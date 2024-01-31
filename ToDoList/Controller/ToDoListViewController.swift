@@ -10,15 +10,12 @@ import UIKit
 class ToDoListViewController: UIViewController {
     
     @IBOutlet var collectionView: UICollectionView!
-    
     @IBOutlet weak var addTaskButton: UIButton!
     
     private var tasks = [ToDoList]()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     private let sectionInsets = UIEdgeInsets(top: 20.0, left: 10.0, bottom: 20.0, right: 10.0)
-    
     let toDoListManager = ToDoManager()
     
     override func viewDidLoad() {
@@ -28,9 +25,7 @@ class ToDoListViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.dragDelegate = self
         collectionView.dropDelegate = self
-        
         collectionView.collectionViewLayout = UICollectionViewFlowLayout()
-        
         collectionView.dragInteractionEnabled = true
         
         toDoListManager.retrieveTodo()
@@ -95,6 +90,9 @@ extension ToDoListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let task = self.tasks[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "toDoCell", for: indexPath) as! ToDoCollectionViewCell
+        
+        cell.delegate = self
+        
         cell.nameLabel.text = task.name
         cell.task = task
         
@@ -205,6 +203,10 @@ extension ToDoListViewController: UICollectionViewDelegateFlowLayout {
         
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath) as! HeaderCollectionReusableView
         
+        let percentage = toDoListManager.calculatePercentage()
+        
+        headerView.progressView.setProgress(Float(percentage) / 100, animated: true)
+        
         headerView.nickName.text = "Welcome Güray"
         return headerView
     }
@@ -213,4 +215,13 @@ extension ToDoListViewController: UICollectionViewDelegateFlowLayout {
         
         return CGSize(width: collectionView.frame.width, height: 400)
     }
+}
+
+extension ToDoListViewController: ToDoCollectionViewCellDelegate {
+    func didToggleCheckmark(for task: ToDoList) {
+            // Calculate the new percentage and update the progress view
+            let percentage = toDoListManager.calculatePercentage()
+            let headerView = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 0)) as? HeaderCollectionReusableView
+            headerView?.progressView.setProgress(Float(percentage) / 100, animated: true)
+        }
 }

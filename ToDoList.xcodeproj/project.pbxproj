@@ -21,6 +21,7 @@
 		10E3ECBF2B51CBB700BDE330 /* ToDoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E3ECBE2B51CBB700BDE330 /* ToDoManager.swift */; };
 		10E3ECC12B51D63500BDE330 /* ToDoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E3ECC02B51D63500BDE330 /* ToDoViewModel.swift */; };
 		10F3905A2B4F283D004C9C32 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F390592B4F283D004C9C32 /* HeaderCollectionReusableView.swift */; };
+		10FE84B42B6A8923004A3768 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FE84B32B6A8923004A3768 /* ProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		10E3ECBE2B51CBB700BDE330 /* ToDoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoManager.swift; sourceTree = "<group>"; };
 		10E3ECC02B51D63500BDE330 /* ToDoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewModel.swift; sourceTree = "<group>"; };
 		10F390592B4F283D004C9C32 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		10FE84B32B6A8923004A3768 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			children = (
 				106696052B4DC013005ED5DF /* ToDoCollectionViewCell.swift */,
 				10F390592B4F283D004C9C32 /* HeaderCollectionReusableView.swift */,
+				10FE84B32B6A8923004A3768 /* ProgressView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				106695EB2B4DBE38005ED5DF /* ToDoListViewController.swift in Sources */,
 				10E3ECC12B51D63500BDE330 /* ToDoViewModel.swift in Sources */,
 				106696032B4DBF8D005ED5DF /* ToDoList+CoreDataClass.swift in Sources */,
+				10FE84B42B6A8923004A3768 /* ProgressView.swift in Sources */,
 				106695E72B4DBE38005ED5DF /* AppDelegate.swift in Sources */,
 				106696062B4DC013005ED5DF /* ToDoCollectionViewCell.swift in Sources */,
 				106695E92B4DBE38005ED5DF /* SceneDelegate.swift in Sources */,
